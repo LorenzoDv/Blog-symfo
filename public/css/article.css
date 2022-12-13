@@ -1,0 +1,24 @@
+img{
+    display: flex;
+   margin:  0 auto; 
+   margin-top: 15px;
+   margin-bottom: 15px;
+}
+.article{
+    max-width: 40em !important;
+    margin:  0 auto;
+    margin-top: 50px;
+}
+.return{
+    margin-left: 25%;
+    margin-top: 25px;
+    position: relative;
+    top:15px;
+    background-color: #1A1A1A;
+    color: white;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+.return:hover{
+    color: gray;
+}

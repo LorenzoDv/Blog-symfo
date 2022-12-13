@@ -1,0 +1,37 @@
+h1{
+    text-align: center !important;
+    margin-top: 30px !important; 
+    margin-bottom: 50px;
+}
+.allPost{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+.card{
+    width:  330px;
+    flex-wrap: wrap;
+    height: 610px;
+
+}
+img{
+    display: flex;
+    margin: 0 auto;
+}
+.card a{
+    color: grey;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+.card p:last-child{
+    
+    margin-top: 15px;
+
+}
+
+.article{
+    margin-top: 2em !important;
+}

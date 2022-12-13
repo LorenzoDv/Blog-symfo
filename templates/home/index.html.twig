@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NameController!{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href='/css/home.css'>
+{% endblock %}
+
+{% block body %}
+
+    <h1>Hello {{ name }} ! </h1>
+    <div class="allPost">
+        {% for allpost in posts%}
+        
+            <div class="card text-white bg-primary mb-3">
+                
+                <div class="card-body">
+                    <h4 class="card-title">{{ allpost.title }}</h4>
+                    <img src="{{ allpost.image }}" alt="img">
+                    <p class="card-text">{{ allpost.description|slice(0, 100) }}...</p>
+                    <a href="{{ path('article', { 'id': allpost.id }) }}">En savoir plus</a>
+                    <p class="card-text">{{ allpost.datetime| date('Y-m-d H:i:s') }}</p>
+                </div>
+                <div class="card-header">Auteur : {{ allpost.author }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

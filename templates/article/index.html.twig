@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href='/css/article.css'>
+{% endblock %}
+
+{% block body %}
+            <a class="return" href="{{ path('Tous-les-articles')}}">Revenir aux articles</a>
+            <div class="card article text-white bg-primary mb-3">
+                
+                <div class="card-body">
+                    <h4 class="card-title">{{ postById.title }}</h4>
+                    <img src="{{ postById.image }}" alt="img">
+                    <p class="card-text">{{ postById.description }}</p>
+                    <p class="card-text">{{ postById.datetime| date('Y-m-d H:i:s') }}</p>
+                </div>
+                <div class="card-header">Auteur : {{ postById.author }}</div>
+            </div>
+{% endblock %}
