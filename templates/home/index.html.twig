@@ -8,12 +8,16 @@
 
 {% block body %}
 
-    <h1>Hello {{ name }} ! </h1>
+    <div class="test">
+        {% for categs in category %}
+            <a href="{{ path('index_by_category', { 'id' : categs.id }) }}">{{ categs.name }}</a>
+        {% endfor %}
+    </div>
+    
     <div class="allPost">
         {% for allpost in posts%}
         
             <div class="card text-white bg-primary mb-3">
-                
                 <div class="card-body">
                     <h4 class="card-title">{{ allpost.title }}</h4>
                     <img src="{{ allpost.image }}" alt="img">

@@ -10,11 +10,12 @@ h1{
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: space-around;
+    margin-top: 50px;
 }
 .card{
-    width:  330px;
+    width: 40%;
     flex-wrap: wrap;
-    height: 610px;
+    height: 600px;
 
 }
 img{
@@ -34,4 +35,22 @@ img{
 
 .article{
     margin-top: 2em !important;
+}
+
+.test{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.test a{
+    text-decoration: none;
+    background-color: #1A1A1A;
+    color: white;
+    padding: 5px 15px;
+}
+.test a:hover{
+    color: gray;
 }
