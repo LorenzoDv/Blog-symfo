@@ -37,6 +37,10 @@ class Post
 
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
     private Collection $categories;
+
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
     public function __construct()
     {
       $this->datetime = new DateTime();  
@@ -144,6 +148,18 @@ class Post
         if ($this->categories->removeElement($category)) {
             $category->removePost($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
