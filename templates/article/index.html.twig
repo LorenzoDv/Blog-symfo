@@ -18,4 +18,21 @@
                 </div>
                 <div class="card-header">Auteur : {{ postById.author }}</div>
             </div>
+            {% if app.user %}
+            {{ form_start(form) }}
+            
+            {{ form_end(form) }}
+            {% endif %}
+              <table class="table table-hover">
+                    <tbody>
+                        {% for comment in comments|sort((a,b) => b.createdAt <=> a.createdAt) %}
+                            <tr class="table-dark ">
+                                <th scope="row">{{ comment.createdAt|date("m/d/Y à H:i", "Europe/Berlin") }}</th>
+                                <td>{{ comment.user.username }}</td>
+                                <td>{{ comment.content }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+            
 {% endblock %}

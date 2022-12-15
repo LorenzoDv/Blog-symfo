@@ -5,8 +5,9 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
-use DateTimeImmutable;
+
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -19,7 +20,7 @@ class Comment
     
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'User')]
     private ?Post $post = null;
@@ -27,13 +28,14 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?User $User = null;
 
-
+    #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    public function __construct()
+    public function __construct(User $user)
     {
-      $this->createdAt = new DateTimeImmutable();  
+      $this->createdAt = new DateTime('now'); 
+      $this->setUser($user); 
     }
 
     public function getId(): ?int
@@ -42,12 +44,12 @@ class Comment
     }
 
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 

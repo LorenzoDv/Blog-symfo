@@ -14,7 +14,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
        
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 40; $i++) {
             $comment = new Comment();
             $comment->setContent($faker->paragraphs(1,true));
             $comment->setPost($this->getReference('post' . rand(0,4)));
