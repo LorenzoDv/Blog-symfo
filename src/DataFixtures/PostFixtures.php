@@ -23,12 +23,14 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
             $post->setDescription($faker->paragraphs(rand(1,4),true));
             $post->setImage('https://placeimg.com/300/300/tech');
             $post->setUser($this->getReference('admin' . rand(0,4)));
+           
+         
 
             for($j = 0; $j < rand(1, 3); $j++) {
                 $post->addCategory($this->getReference('category' . rand(0, 4)));
             }
            
-
+            $this->addReference('post'. $i, $post);
             $manager->persist($post);
         }
 
@@ -37,8 +39,8 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            CategoryFixtures::class,
-            UserFixtures::class
+            UserFixtures::class,
+            CategoryFixtures::class    
         ];
     }
 }

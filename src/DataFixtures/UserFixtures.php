@@ -30,6 +30,7 @@ class UserFixtures extends Fixture
               ->setEmail($username . '@blog.fr')
               ->setPassword($this->hasher->hashPassWord($user, 'password'))
               ->setRoles(['ROLE_USER']);
+              $this->addReference('user'. $i, $user);
                 $manager->persist($user);
         }
         for($i = 0 ; $i<5; $i++){
@@ -41,6 +42,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_USER, ROLE_ADMIN']);
 
             $this->addReference('admin'. $i, $user);
+            
             
             $manager->persist($user);
       }

@@ -41,11 +41,15 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    private Collection $User;
     public function __construct()
     {
       $this->datetime = new DateTime();  
       $this->isPublished = false;
       $this->categories = new ArrayCollection();
+      $this->User = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +164,28 @@ class Post
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function addUser(Comment $user): self
+    {
+        if (!$this->User->contains($user)) {
+            $this->User->add($user);
+            $user->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Comment $user): self
+    {
+        if ($this->User->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getPost() === $this) {
+                $user->setPost(null);
+            }
+        }
 
         return $this;
     }
